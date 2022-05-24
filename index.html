@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>뷰 기초 익히기</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
    <div id="app">
-       {{ nextYear('안녕') }}
-       <input type="text" v-bind:value="inputData">
-       <a :href="getVelogLink('@zzee22su')">지수 벨로그</a>
+       <div class="class03">
+        {{ nextYear('안녕') }}
+        <input type="text" v-bind:value="inputData">
+        <a :href="getVelogLink('@zzee22su')">지수 벨로그</a>
+       </div>
        <br/>
        <br/>
-       <div class="event">
+       <div class="class04">
             이벤트 <br/>
             <button onclick="alert('hello jisu')">onClick</button>
             <button v-on:click="alert">v-on:Click</button>
@@ -34,24 +37,21 @@
        </div>
        <br>
        <br>
-       <div>
+       <div class ="class05">
            키보드 이벤트
            <form>
-            <input type="text" :value="text" @keyup="updateText"><br>
-            {{text}}
-            <button type="submit">Submit</button>
-        </form>
-       </div>
-       <br>
-       <br>
-       데이터 양방향 바인딩
-       <div class="data-two-way-binding">
-           <form>
-               <input type="text" v-model="text2"><br>
-               {{text2}}
+               <input type="text" :value="text" @keyup="updateText"><br>
+               {{text}}
                <button type="submit">Submit</button>
-           </form>
-
+            </form>
+       <br>
+       <br>
+           데이터 양방향 바인딩
+            <form>
+                <input type="text" v-model="text2"><br>
+                {{text2}}
+                <button type="submit">Submit</button>
+            </form>
        </div>
        <br/>
        <br/>
@@ -70,7 +70,8 @@
                link: 'https://velog.io/',
                year: 2022,
                text: 'text',
-               text2: 'text'
+               text2: 'text',
+               number: 1
            },
            
            methods: {
