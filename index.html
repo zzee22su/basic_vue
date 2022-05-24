@@ -10,8 +10,52 @@
 <body>
    <div id="app">
        {{ nextYear('안녕') }}
-       <input :type="type" :value = "inputData">
+       <input type="text" v-bind:value="inputData">
        <a :href="getVelogLink('@zzee22su')">지수 벨로그</a>
+       <br/>
+       <br/>
+       <div class="event">
+            이벤트 <br/>
+            <button onclick="alert('hello jisu')">onClick</button>
+            <button v-on:click="alert">v-on:Click</button>
+            <br/>
+            {{year}}
+            <button v-on:click="plus">더하기</button>
+            <button v-on:click="minus">빼기</button>
+            <br/>
+            <form v-on:submit="submit">
+                <input type="text">
+                <button type="submit">Submit</button>
+            </form>
+            <form v-on:submit.prevent="submit">
+                <input type="text">
+                <button type="submit">prevent Submit</button>
+            </form>
+       </div>
+       <br>
+       <br>
+       <div>
+           키보드 이벤트
+           <form>
+            <input type="text" :value="text" @keyup="updateText"><br>
+            {{text}}
+            <button type="submit">Submit</button>
+        </form>
+       </div>
+       <br>
+       <br>
+       데이터 양방향 바인딩
+       <div class="data-two-way-binding">
+           <form>
+               <input type="text" v-model="text2"><br>
+               {{text2}}
+               <button type="submit">Submit</button>
+           </form>
+
+       </div>
+       <br/>
+       <br/>
+
    </div>
    <script>
        new Vue({
@@ -23,7 +67,10 @@
                },
                inputData : 'hello',
                type: 'number',
-               link: 'https://velog.io/'
+               link: 'https://velog.io/',
+               year: 2022,
+               text: 'text',
+               text2: 'text'
            },
            
            methods: {
@@ -35,6 +82,22 @@
                },
                otherMethod: function() {
                    this.nextYear();
+               },
+               alert() {
+                   alert('Hi, jisu');
+               },
+               plus() {
+                   return this.year++;
+               },
+               minus() {
+                   return this.year--;
+               },
+               submit() {
+                   alert('submitted');
+                   console.log('hello');
+               },
+               updateText(event) {
+                   this.text=event.target.value;
                }    
             }
        })
