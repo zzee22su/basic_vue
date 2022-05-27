@@ -55,6 +55,10 @@
        </div>
        <br/>
        <br/>
+       <div class="class06">
+           <button @click="changeMessage">Click</button>
+           {{ reversedMessage }}
+       </div>
 
    </div>
    <script>
@@ -71,7 +75,8 @@
                year: 2022,
                text: 'text',
                text2: 'text',
-               number: 1
+               number: 1,
+               message : '안녕하십니까'
            },
            
            methods: {
@@ -99,8 +104,20 @@
                },
                updateText(event) {
                    this.text=event.target.value;
-               }    
+               },
+               changeMessage() {
+                   this.message = '지수우'
+               } 
+            },
+            computed: {
+                reversedMessage() {
+                    return this.message.split('').reverse().join('');
+                }
+
             }
+            //method, computed에서 reversedMessage를 사용해도 똑같은 결과값이 나오는데 어떤 차이점이 있을까?
+            //-> computed 속성은 캐싱을 하고, method는 캐싱을 하지 않는다. 
+
        })
    </script>
 </body>
