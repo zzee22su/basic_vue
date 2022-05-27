@@ -56,9 +56,19 @@
        <br/>
        <br/>
        <div class="class06">
+           computed 속성 사용하기 <br>
            <button @click="changeMessage">Click</button>
            {{ reversedMessage }}
        </div>
+       <br/>
+       <br/>
+       <div class="class07">
+           watch 속성 사용하기 <br>
+           {{ message }}
+           <button @click="changeMessage">Click</button><br>
+           {{ updated }}
+       </div>
+
 
    </div>
    <script>
@@ -76,7 +86,8 @@
                text: 'text',
                text2: 'text',
                number: 1,
-               message : '안녕하십니까'
+               message : '안녕하십니까',
+               updated : 'Hello'
            },
            
            methods: {
@@ -112,6 +123,13 @@
             computed: {
                 reversedMessage() {
                     return this.message.split('').reverse().join('');
+                },
+                watch : {
+                    message(newVal, oldValu) {
+                        console.log(newVal, oldVal);
+                        this.updated = 'Hi';
+                    }
+
                 }
 
             }
