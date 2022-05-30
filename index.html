@@ -5,6 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>뷰 기초 익히기</title>
+    <style>
+        .red {
+            color : red;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .font-shape {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
@@ -67,7 +78,25 @@
         {{ message }}
         <button @click="changeMessage">Click</button><br>
         {{ updated }}
-    </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="class08">
+            Style Class 사용하기 
+            <div :class ="{ red: isRed, bold: isBold, 'font-shape': isFontShape }">
+                Hello
+            </div>
+            <button @click="updateColor">Click</button>
+         </div>
+         <br/>
+         <br/>
+         <div class="class09">
+            Style 바인딩하기
+            <div :style="{ color: red, fontSize: size}">
+                Hello
+            </div>
+            <button @click="updateColor">Click</button>
+         </div>
     <br/>
     <br/>
 
@@ -89,7 +118,12 @@
                number: 1,
                message : '안녕하십니까',
                messageForWatch : 'Hey',
-               updated : 'Come on'
+               updated : 'Come on',
+               isRed : false,
+               isBold : false,
+               isFontShape : false,
+               red: 'red',
+               size: '30px'
            },
            
            methods: {
@@ -123,6 +157,11 @@
                },
                changeMessageForWatch() {
                    this.messageForWatch = 'Jisu';
+               },
+               updateColor() {
+                   this.isRed = !this.isRed;
+                   this.isBold = !this.isBold;
+                   this.isFontShape = !this.isFontShape;
                }
             },
             computed: {
@@ -138,7 +177,6 @@
             }
             //method, computed에서 reversedMessage를 사용해도 똑같은 결과값이 나오는데 어떤 차이점이 있을까?
             //-> computed 속성은 캐싱을 하고, method는 캐싱을 하지 않는다. 
-
        })
    </script>
 </body>
