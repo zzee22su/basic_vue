@@ -64,8 +64,8 @@
        <br/>
        <div class="class07">
         watch 속성 사용하기 <br>
-        {{ messageForWatch }}
-        <button @click="changeMessageForWatch">Click</button><br>
+        {{ message }}
+        <button @click="changeMessage">Click</button><br>
         {{ updated }}
     </div>
     <br/>
@@ -128,15 +128,13 @@
             computed: {
                 reversedMessage() {
                     return this.message.split('').reverse().join('');
-                },
+                }
+            },
             watch: {
                 message(newVal, oldVal) {
                     console.log(newVal, oldVal);
                     this.updated = 'How are you';
                 }
-
-            }
-
             }
             //method, computed에서 reversedMessage를 사용해도 똑같은 결과값이 나오는데 어떤 차이점이 있을까?
             //-> computed 속성은 캐싱을 하고, method는 캐싱을 하지 않는다. 
