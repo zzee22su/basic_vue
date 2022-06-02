@@ -97,6 +97,31 @@
             </div>
             <button @click="updateColor">Click</button>
          </div>
+         <br/>
+         <br/>
+         <div class="class09">
+            v-if와 v-show
+            <template v-if="show">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+            </template>
+            <button @click="toggle">toggle</button>
+            <br>
+            <br>
+            <template v-if="number === 1">
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+            </template>
+            <div v-else-if="number === 2">Hi</div>
+            <div v-else>No</div>
+            <button @click="increaseNumber">increase</button> {{ number }}
+            <br>
+            <br>
+            <div v-show="show">yes</div>
+            <button @click="toggleShow">toggleshow</button>
+         </div>
     <br/>
     <br/>
 
@@ -123,7 +148,8 @@
                isBold : false,
                isFontShape : false,
                red: 'red',
-               size: '30px'
+               size: '30px',
+               show : false
            },
            
            methods: {
@@ -162,6 +188,15 @@
                    this.isRed = !this.isRed;
                    this.isBold = !this.isBold;
                    this.isFontShape = !this.isFontShape;
+               },
+               toggle() {
+                   this.show = !this.show;
+               },
+               toggleShow() {
+                   this.show = !this.show;
+               },
+               increaseNumber() {
+                   this.number++;
                }
             },
             computed: {
