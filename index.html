@@ -121,6 +121,14 @@
             <br>
             <div v-show="show">yes</div>
             <button @click="toggleShow">toggleshow</button>
+            <br>
+            <br>
+            v-for 리스트 렌더링
+            <div v-for="(person, index) in people" :key="person.id">
+                {{person.name}}
+                {{person.age}}
+                {{index}}
+            </div>
          </div>
     <br/>
     <br/>
@@ -141,15 +149,21 @@
                text: 'text',
                text2: 'text',
                number: 1,
-               message : '안녕하십니까',
-               messageForWatch : 'Hey',
-               updated : 'Come on',
-               isRed : false,
-               isBold : false,
+               message: '안녕하십니까',
+               messageForWatch: 'Hey',
+               updated: 'Come on',
+               isRed: false,
+               isBold: false,
                isFontShape : false,
                red: 'red',
                size: '30px',
-               show : false
+               show: false,
+               people: [
+                   {id: 1, name: 'mh',age: 20},
+                   {id: 2, name: 'hw',age: 21},
+                   {id: 3, name: 'jh',age: 22},
+                   {id: 4, name: 'sn',age: 23}
+               ]
            },
            
            methods: {
