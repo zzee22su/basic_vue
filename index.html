@@ -5,252 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>뷰 기초 익히기</title>
-    <style>
-        .red {
-            color : red;
-        }
-        .bold {
-            font-weight: bold;
-        }
-        .font-shape {
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
-    </style>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
    <div id="app">
-       <div class="class03">
-        {{ nextYear('안녕') }}
-        <input type="text" v-bind:value="inputData">
-        <a :href="getVelogLink('@zzee22su')">지수 벨로그</a>
-       </div>
-       <br/>
-       <br/>
-       <div class="class04">
-            이벤트 <br/>
-            <button onclick="alert('hello jisu')">onClick</button>
-            <button v-on:click="alert">v-on:Click</button>
-            <br/>
-            {{year}}
-            <button v-on:click="plus">더하기</button>
-            <button v-on:click="minus">빼기</button>
-            <br/>
-            <form v-on:submit="submit">
-                <input type="text">
-                <button type="submit">Submit</button>
-            </form>
-            <form v-on:submit.prevent="submit">
-                <input type="text">
-                <button type="submit">prevent Submit</button>
-            </form>
-       </div>
-       <br>
-       <br>
-       <div class ="class05">
-           키보드 이벤트
-           <form>
-               <input type="text" :value="text" @keyup="updateText"><br>
-               {{text}}
-               <button type="submit">Submit</button>
-            </form>
-       <br>
-       <br>
-           데이터 양방향 바인딩
-            <form>
-                <input type="text" v-model="text2"><br>
-                {{text2}}
-                <button type="submit">Submit</button>
-            </form>
-       </div>
-       <br/>
-       <br/>
-       <div class="class06">
-           computed 속성 사용하기 <br>
-           <button @click="changeMessage">Click</button>
-           {{ reversedMessage }}
-       </div>
-       <br/>
-       <br/>
-       <div class="class07">
-        watch 속성 사용하기 <br>
-        {{ message }}
-        <button @click="changeMessage">Click</button><br>
-        {{ updated }}
-        </div>
-        <br/>
-        <br/>
-        <div class="class08">
-            Style Class 사용하기 
-            <div :class ="{ red: isRed, bold: isBold, 'font-shape': isFontShape }">
-                Hello
-            </div>
-            <button @click="updateColor">Click</button>
-         </div>
-         <br/>
-         <br/>
-         <div class="class09">
-            Style 바인딩하기
-            <div :style="{ color: red, fontSize: size}">
-                Hello
-            </div>
-            <button @click="updateColor">Click</button>
-         </div>
-         <br/>
-         <br/>
-         <div class="class09">
-            v-if와 v-show
-            <template v-if="show">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-            </template>
-            <button @click="toggle">toggle</button>
-            <br>
-            <br>
-            <template v-if="number === 1">
-                <div>4</div>
-                <div>5</div>
-                <div>6</div>
-            </template>
-            <div v-else-if="number === 2">Hi</div>
-            <div v-else>No</div>
-            <button @click="increaseNumber">increase</button> {{ number }}
-            <br>
-            <br>
-            <div v-show="show">yes</div>
-            <button @click="toggleShow">toggleshow</button>
-            <br>
-            <br>
-            v-for 리스트 렌더링
-            <div v-for="(person, index) in people" :key="person.id">
-                {{person.name}}
-                {{person.age}}
-                {{index}}
-            </div>
-            <br>
-            <br>
-            <div>
-                여러개의 Vue 인스턴스 사용하기<br>
-                {{ name }}
-                <button @click="changeText">changeText</button>
-            </div>
-         </div>
-   </div>
+       <zzee22su-button></zzee22su-button>
+    </div>
    <hr>
    <div id="app-1">
-       {{name}}
-       <button @click="changeText">changeText</button>
+       <zzee22su-button></zzee22su-button>
    </div>
    <script>
-       const app = new Vue({
-           el: '#app',
-           data: {
-               person: {
-                name: 'jisu',
-                age: 27
-               },
-               inputData : 'hello',
-               type: 'number',
-               link: 'https://velog.io/',
-               year: 2022,
-               text: 'text',
-               text2: 'text',
-               number: 1,
-               message: '안녕하십니까',
-               messageForWatch: 'Hey',
-               updated: 'Come on',
-               isRed: false,
-               isBold: false,
-               isFontShape : false,
-               red: 'red',
-               size: '30px',
-               show: false,
-               people: [
-                   {id: 1, name: 'mh',age: 20},
-                   {id: 2, name: 'hw',age: 21},
-                   {id: 3, name: 'jh',age: 22},
-                   {id: 4, name: 'sn',age: 23}
-               ],
-               name: 'jisu'
-           },
-           
-           methods: {
-               getVelogLink(velog) {
-                   return this.link+ velog;
-               },
-               nextYear(greeting) {
-                   return  greeting + '! ' + this.person.name + '는 내년에' + (this.person.age + 1) + '살 입니다.'
-               },
-               otherMethod: function() {
-                   this.nextYear();
-               },
-               alert() {
-                   alert('Hi, jisu');
-               },
-               plus() {
-                   return this.year++;
-               },
-               minus() {
-                   return this.year--;
-               },
-               submit() {
-                   alert('submitted');
-                   console.log('hello');
-               },
-               updateText(event) {
-                   this.text=event.target.value;
-               },
-               changeMessage() {
-                   this.message = '지수우'
-               },
-               changeMessageForWatch() {
-                   this.messageForWatch = 'Jisu';
-               },
-               updateColor() {
-                   this.isRed = !this.isRed;
-                   this.isBold = !this.isBold;
-                   this.isFontShape = !this.isFontShape;
-               },
-               toggle() {
-                   this.show = !this.show;
-               },
-               toggleShow() {
-                   this.show = !this.show;
-               },
-               increaseNumber() {
-                   this.number++;
-               },
-               changeText() {
-                   app1.name = 'jisu updated'
+       Vue.component('zzee22su-button', {
+           template: 
+           `<div>
+            {{ name }}
+            <button @click="changeText">changeText</button>
+            <div/>`, 
+           data() {
+               return {
+                   name: 'jisu'   
                }
-            },
-            computed: {
-                reversedMessage() {
-                    return this.message.split('').reverse().join('');
-                }
-            },
-            watch: {
-                message(newVal, oldVal) {
-                    console.log(newVal, oldVal);
-                    this.updated = 'How are you';
-                }
+           },
+           methods: {
+               changeText() {
+                   this.name = 'jisu updated'
+               }
             }
-            //method, computed에서 reversedMessage를 사용해도 똑같은 결과값이 나오는데 어떤 차이점이 있을까?
-            //-> computed 속성은 캐싱을 하고, method는 캐싱을 하지 않는다. 
+       });
+       
+       const app = new Vue({
+           el: '#app'
        })
 
        const app1 = new Vue({
-           el: '#app-1',
-           data: {
-               name:'zzee22su'
-           },
-           methods: {
-            changeText() {
-                   app.name = 'zzee22su updated'
-               }
-           }
+           el: '#app-1'
        })
    </script>
 </body>
