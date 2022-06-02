@@ -129,13 +129,22 @@
                 {{person.age}}
                 {{index}}
             </div>
+            <br>
+            <br>
+            <div>
+                여러개의 Vue 인스턴스 사용하기<br>
+                {{ name }}
+                <button @click="changeText">changeText</button>
+            </div>
          </div>
-    <br/>
-    <br/>
-
+   </div>
+   <hr>
+   <div id="app-1">
+       {{name}}
+       <button @click="changeText">changeText</button>
    </div>
    <script>
-       new Vue({
+       const app = new Vue({
            el: '#app',
            data: {
                person: {
@@ -163,7 +172,8 @@
                    {id: 2, name: 'hw',age: 21},
                    {id: 3, name: 'jh',age: 22},
                    {id: 4, name: 'sn',age: 23}
-               ]
+               ],
+               name: 'jisu'
            },
            
            methods: {
@@ -211,6 +221,9 @@
                },
                increaseNumber() {
                    this.number++;
+               },
+               changeText() {
+                   app1.name = 'jisu updated'
                }
             },
             computed: {
@@ -226,6 +239,18 @@
             }
             //method, computed에서 reversedMessage를 사용해도 똑같은 결과값이 나오는데 어떤 차이점이 있을까?
             //-> computed 속성은 캐싱을 하고, method는 캐싱을 하지 않는다. 
+       })
+
+       const app1 = new Vue({
+           el: '#app-1',
+           data: {
+               name:'zzee22su'
+           },
+           methods: {
+            changeText() {
+                   app.name = 'zzee22su updated'
+               }
+           }
        })
    </script>
 </body>
