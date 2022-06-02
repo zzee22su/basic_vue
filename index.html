@@ -17,10 +17,18 @@
        <zzee22su-button></zzee22su-button>
    </div>
    <script>
+       Vue.component('hello-world', {
+           template: 
+           `<div>
+            hello whold
+            <div/>`
+       });
+
        Vue.component('zzee22su-button', {
            template: 
            `<div>
             {{ name }}
+            <hello-world></hello-world>
             <button @click="changeText">changeText</button>
             <div/>`, 
            data() {
