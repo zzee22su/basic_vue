@@ -5,7 +5,7 @@
     </h1>
     <form action="">
       <InputField v-model="name"/>
-      <button>Submit</button>
+      <button @click="updateName">Submit</button>
     </form>
     {{ name }}
 
@@ -45,13 +45,48 @@ export default {
 
   data() {
     return {
-      name: ''
+      name: 'Kossie Coder'
     }
   },
 
+  beforeCreate() {
+    console.log('beforeCreate', this.name);
+  },
+
+  created() {
+    // 서버애 요청 시, 사용한다. 
+    console.log('created', this.name);
+  }, 
+
+  beforeMount() {
+    alert('beforeMount')
+  },
+
+  mounted() {
+    // dom을 제어할 때, 사용한다. 
+    alert('mounted')
+  },
+
+  beforeUpdate() {
+    alert('beforeUpdate')
+  },
+
+  updated() {
+    alert('updated')
+  },
+
+  beforeDestroy() {
+    // 메모리 누수를 방지하기 위해 만약 이벤트 리스너를 달아놨다면 리스너를 삭제해주거나 데이터를 초기화해주면 된다. 
+    alert('beforeDestroy')
+  },
+
+  destroyed() {
+    alert('destroyed')
+  },
+
   methods: {
-    updateName(name) {
-      this.name = name;
+    updateName() {
+      this.name = 'hello';
     }
   }
 
