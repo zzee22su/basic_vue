@@ -1,5 +1,8 @@
 <template>
     <div>
+        <h1>
+            {{ title }}
+        </h1>
         <p>
             {{ name }}
         </p>
@@ -11,16 +14,30 @@
 
 <script>
 export default {
+    props: {
+        title: {
+            type: String,
+            required: false,
+            default: 'default title'
+        },
+        
+        name: {
+            type: String,
+            default: 'default name'
+        }
+
+    },
+
     data() {
         return {
-            name: 'Zzee22su'
+            // name: 'Zzee22su'
         }
     },
 
     methods: {
-        updateName() {
-            this.name =  'Zzee22su updated';
-        }
+        // updateName() {
+        //     this.name =  'Zzee22su updated';
+        // }
     }
 }
 </script>

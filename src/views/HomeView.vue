@@ -3,21 +3,37 @@
     <h1>
       This is Home page
     </h1>
-    <Zzee22su/>
+    <form action="">
+      <InputField :name="name" @update-name="updateName"/>
+      <button>Submit</button>
+    </form>
+    {{ name }}
+    <!-- 
+      방법 2
+      InputField.vue에서 보낸 $event를
+      @update-name="name = $event.target.value"로 받을 수 있다. 
+      아래에 선언된 method updateName(name)은 주석처리 해야 한다. 
+     -->
   </div>
 </template>
 
 <script>
-import Zzee22su from '@/components/Zzee22su.vue';
+import InputField from '@/components/InputField.vue'
 
 export default {
   components: {
-    Zzee22su
+    InputField
   },
 
   data() {
     return {
-      name: 'Zzee22su'
+      name: ''
+    }
+  },
+
+  methods: {
+    updateName(name) {
+      this.name = name;
     }
   }
 
